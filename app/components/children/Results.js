@@ -22,7 +22,7 @@ class Results extends React.Component {
     this.setState({
       article: newState
     });
-    console.log("New value of article? " + this.state.article.title);
+    console.log("New value of article date? " + this.state.article.date);
     this.props.setArticleToSave(this.state.article);
   }
   render() {

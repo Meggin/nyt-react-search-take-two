@@ -61,7 +61,7 @@ class Main extends React.Component {
 
     const newState = this.state.resultToSave;
     newState.title = article.title;
-    newState.date = article.pubdate;
+    newState.date = article.date;
 
     this.setState({
       resultToSave: newState
