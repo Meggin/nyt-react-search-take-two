@@ -17,12 +17,12 @@ class Results extends React.Component {
         <div className="panel-body">
           {this.props.results.map(function(obj, index){
             return (
-              <form onSubmit={this.handleSubmit} key={index}>
+              <div onClick={this.handleSubmit} key={index}>
                 <p>{obj.headline.main}</p>
                 <button type="submit" className="btn btn-primary">
                   Save Article
                 </button>
-              </form>
+              </div>
             );
           }, this)}
         </div>
