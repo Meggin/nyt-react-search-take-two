@@ -7,7 +7,10 @@ var ArticleSchema = new Schema({
   },
   date: {
     type: String
-  }
+  },
+  url: {
+    type: String
+  },
 });
 
 var Article = mongoose.model("Article", ArticleSchema);

@@ -2,6 +2,14 @@ import React from "react";
 class Saved extends React.Component {
 	constructor(props) {
 		super(props);
+		this.deleteArticle = this.deleteArticle.bind(this);
+	}
+	deleteArticle(articleID) {
+		e.preventDefault();
+		let id = articleID;
+		this.props.onArticleDelete(id);
+		console.log("We are trying to delete the article.");
+
 	}
 	render() {
 		return (
@@ -12,9 +20,21 @@ class Saved extends React.Component {
           					<h3 className="panel-title">Saved Articles</h3>
         				</div>
         				<div className="panel-body">
-					      {this.props.saved.map(function(saved, i) {
+					      {this.props.saved.map(function(article, i) {
 					        return (
-					          <p key={i}>{saved.title}</p>
+					        	<div key={i} onClick={() => this.deleteArticle(article._id)} className="row">
+					        		<div className="col-sm-4">
+					        			{article.title}
+					        		</div>
+					        		<div className="col-sm-4">
+					        			Date Saved: {article.date}
+					        		</div>
+					        		<div className="col-sm-4">
+					        			<button className="btn btn-primary">
+                  							Remove
+                						</button>
+					        		</div>
+					        	</div>
 					        );
 					      })}
 					    </div>

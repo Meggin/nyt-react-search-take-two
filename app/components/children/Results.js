@@ -6,19 +6,21 @@ class Results extends React.Component {
     this.state = {
       article: {
         title: "",
-        date: ""
+        date: "",
+        url: ""
       }
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit(headline, pubdate) {
+  handleSubmit(headline, pubdate, url) {
     event.preventDefault();
     console.log("This is headline of new article to save: " + headline);
     console.log("This is the published date of new article to save: " + pubdate);
     const newState = this.state.article;
     newState.title = headline;
     newState.date = pubdate;
+    newState.url = url
     this.setState({
       article: newState
     });
@@ -34,12 +36,12 @@ class Results extends React.Component {
         <div className="panel-body">
           {this.props.results.map(function(obj, index){
             return (
-              <p key={index} onClick={() => this.handleSubmit(obj.headline.main, obj.pub_date)} >
-                {obj.headline.main}
+              <div key={index} onClick={() => this.handleSubmit(obj.headline.main, obj.pub_date, obj.web_url)}>
+                <p>{obj.headline.main}</p>
                 <button className="btn btn-primary">
                   Save Article
                 </button>
-              </p>
+              </div>
             );
           }, this)}
         </div>

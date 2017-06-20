@@ -37,7 +37,14 @@ const helpers = {
   			date: articleDate
   		}
   	);
-  }
+  },
+
+
+  	deleteArticle: (articleID) => {
+
+  		console.log("We have an article to delete in helper: " + articleID);
+
+  	}
 
 };
 // Export the helpers function.

@@ -22,6 +22,7 @@ class Main extends React.Component {
 
     this.setTerm = this.setTerm.bind(this);
     this.setArticleToSave = this.setArticleToSave.bind(this);
+    this.handleArticleDelete=this.handleArticleDelete.bind(this);
   }
 
     // The moment the page renders get saved articles
@@ -62,19 +63,26 @@ class Main extends React.Component {
     const newState = this.state.resultToSave;
     newState.title = article.title;
     newState.date = article.date;
+    newState.url = article.url;
 
     this.setState({
       resultToSave: newState
     });
     console.log("We have an article to save in main! " + this.state.resultToSave.title);
 
-    helpers.saveArticle(this.state.resultToSave.title, this.state.resultToSave.date).then((data) => {
+    helpers.saveArticle(this.state.resultToSave.title, this.state.resultToSave.date, this.state.resultToSave.url).then((data) => {
       console.log("Save data title looks like this: " + data);
 
       this.setState(previousState => ({
         saved: [...previousState.saved, this.state.resultToSave]
       }));
 
+    });
+  }
+
+  handleArticleDelete(id) {
+    helpers.deleteArticle(id).then((data) => {
+      console.log("Article should have been deleted: " + data);
     });
   }
 
@@ -90,7 +98,7 @@ class Main extends React.Component {
           <Search setTerm={this.setTerm} setArticleToSave={this.setArticleToSave} saved={this.state.saved} results={this.state.results} resultToSave={this.state.resultToSave} />
         </div>
         <div className="row">
-          <Saved saved={this.state.saved} />
+          <Saved saved={this.state.saved} onArticleDelete={this.handleArticleDelete} />
         </div>
       </div>
     );
