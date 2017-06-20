@@ -3,10 +3,27 @@ import React from "react";
 class Results extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      article: {
+        title: "",
+        date: ""
+      }
+    };
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit(event) {
-    console.log("This is: " + this);
+  handleSubmit(headline, pubdate) {
+    event.preventDefault();
+    console.log("This is headline of new article to save: " + headline);
+    console.log("This is the published date of new article to save: " + pubdate);
+    const newState = this.state.article;
+    newState.title = headline;
+    newState.date = pubdate;
+    this.setState({
+      article: newState
+    });
+    console.log("New value of article? " + this.state.article.title);
+    this.props.setArticleToSave(this.state.article);
   }
   render() {
     return (
@@ -17,12 +34,12 @@ class Results extends React.Component {
         <div className="panel-body">
           {this.props.results.map(function(obj, index){
             return (
-              <div onClick={this.handleSubmit} key={index}>
-                <p>{obj.headline.main}</p>
-                <button type="submit" className="btn btn-primary">
+              <p key={index} onClick={() => this.handleSubmit(obj.headline.main, obj.pub_date)} >
+                {obj.headline.main}
+                <button className="btn btn-primary">
                   Save Article
                 </button>
-              </div>
+              </p>
             );
           }, this)}
         </div>

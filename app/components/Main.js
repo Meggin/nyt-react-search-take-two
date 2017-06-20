@@ -21,14 +21,14 @@ class Main extends React.Component {
     };
 
     this.setTerm = this.setTerm.bind(this);
-    this.setResultToSave = this.setResultToSave.bind(this);
+    this.setArticleToSave = this.setArticleToSave.bind(this);
   }
 
     // The moment the page renders get saved articles
   componentDidMount() {
     // Get the latest history.
     helpers.getSaved().then(function(response) {
-      console.log(response);
+      console.log("These are current saved articles " + response);
       if (response !== this.state.saved) {
         console.log("Saved articles", response.data);
         this.setState({ saved: response.data });
@@ -57,13 +57,25 @@ class Main extends React.Component {
     });
   }
 
-  setResultToSave(selectedResultItem) {
+  setArticleToSave(article) {
+
+    const newState = this.state.resultToSave;
+    newState.title = article.title;
+    newState.date = article.pubdate;
+
     this.setState({
-      resultToSave: selectedResultItem
+      resultToSave: newState
     });
-    this.setState(previousState => ({
-      saved: [...previousState.saved, 'resultToSave']
-    }));
+    console.log("We have an article to save in main! " + this.state.resultToSave.title);
+
+    helpers.saveArticle(this.state.resultToSave.title, this.state.resultToSave.date).then((data) => {
+      console.log("Save data title looks like this: " + data);
+
+      this.setState(previousState => ({
+        saved: [...previousState.saved, this.state.resultToSave]
+      }));
+
+    });
   }
 
   render() {
@@ -75,7 +87,7 @@ class Main extends React.Component {
           <p>Search for and annotate articles of interest!</p>
         </div>
         <div className="row">
-          <Search setTerm={this.setTerm} setResultToSave={this.setResultToSave} saved={this.state.saved} results={this.state.results} resultToSave={this.state.resultToSave} />
+          <Search setTerm={this.setTerm} setArticleToSave={this.setArticleToSave} saved={this.state.saved} results={this.state.results} resultToSave={this.state.resultToSave} />
         </div>
         <div className="row">
           <Saved saved={this.state.saved} />

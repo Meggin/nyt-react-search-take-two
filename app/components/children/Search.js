@@ -19,7 +19,7 @@ class Search extends React.Component {
           </div>
           <div className="row">
             <div className="col-sm-12">
-              <Results results={this.props.results} resultToSave={this.props.resultToSave} setResultToSave={this.setResultToSave}/>
+              <Results results={this.props.results} setArticleToSave={this.props.setArticleToSave} resultToSave={this.props.resultToSave} />
             </div>
           </div>
       </div>

@@ -26,8 +26,17 @@ const helpers = {
   	return axios.get("/api/saved");
   },
 
-  saveArticle: (title) => {
-  	return axios.post("/api/saved", { title: title });
+  saveArticle: (articleTitle, articleDate) => {
+
+  	console.log("We have an article title to save in helper code: " + articleTitle);
+  	console.log("We have an article date to save in helper code: " + articleTitle);
+
+  	return axios.post("/api/saved",
+  		{
+  			title: articleTitle,
+  			date: articleDate
+  		}
+  	);
   }
 
 };

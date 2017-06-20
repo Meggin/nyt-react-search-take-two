@@ -4,8 +4,8 @@ var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
-// Require History Schema
-var History = require("./models/Article");
+// Require Article Schema
+var Article = require("./models/Article");
 
 // Create Instance of Express
 var app = express();
@@ -58,12 +58,14 @@ app.get("/", function(req, res) {
 
 // Route to save articles from searches.
 app.post("/api/saved", function(req, res) {
-  console.log("Article: " + req.body.title);
+  console.log("Article title: " + req.body.title);
+  console.log("Article date: " + req.body.date);
 
   // Save article.
   // Todo: need to add date and url eventually.
   Article.create({
-    title: req.body.title
+    title: req.body.title,
+    date: req.body.date
   }, function(err) {
     if (err) {
       console.log(err);
