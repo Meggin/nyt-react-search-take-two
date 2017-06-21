@@ -22,7 +22,7 @@ class Main extends React.Component {
 
     this.setTerm = this.setTerm.bind(this);
     this.setArticleToSave = this.setArticleToSave.bind(this);
-    this.handleArticleDelete=this.handleArticleDelete.bind(this);
+    this.deleteArticle = this.deleteArticle.bind(this);
   }
 
     // The moment the page renders get saved articles
@@ -80,9 +80,10 @@ class Main extends React.Component {
     });
   }
 
-  handleArticleDelete(id) {
-    helpers.deleteArticle(id).then((data) => {
-      console.log("Article should have been deleted: " + data);
+  deleteArticle(articleID) {
+    console.log("This is the id for the article we want to delete: " + articleID);
+    helpers.deleteArticle(articleID).then(() => {
+      console.log("Article deleted?");
     });
   }
 
@@ -98,7 +99,7 @@ class Main extends React.Component {
           <Search setTerm={this.setTerm} setArticleToSave={this.setArticleToSave} saved={this.state.saved} results={this.state.results} resultToSave={this.state.resultToSave} />
         </div>
         <div className="row">
-          <Saved saved={this.state.saved} onArticleDelete={this.handleArticleDelete} />
+          <Saved saved={this.state.saved} deleteArticle={this.deleteArticle} />
         </div>
       </div>
     );

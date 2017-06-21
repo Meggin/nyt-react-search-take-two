@@ -76,9 +76,17 @@ app.post("/api/saved", function(req, res) {
   });
 });
 
-// Todo: need to add ability to delete articles eventually.
+app.delete("/api/saved/:id", function(req, res) {
 
-// -------------------------------------------------
+  console.log("Article ID to delete: " + req.params.id);
+
+  Article.findByIdAndRemove(req.params.id, function (err, response) {
+    if(err){
+      res.send("Delete didn't work: " + err);
+    }
+    res.redirect("/");
+  });
+});
 
 // Listener
 app.listen(PORT, function() {

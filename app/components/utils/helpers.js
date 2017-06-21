@@ -40,11 +40,20 @@ const helpers = {
   },
 
 
-  	deleteArticle: (articleID) => {
+  deleteArticle: (articleID) => {
 
-  		console.log("We have an article to delete in helper: " + articleID);
+  	console.log("We have an article to delete in helper: " + articleID);
 
-  	}
+  	return axios.delete("/api/saved/" + articleID)
+
+  	.then(res =>  {
+  		console.log("Delete response from axios: " + res);
+  	})
+  	.catch(err => {
+  		console.log("Error pushing to delete: " + err);
+  	});
+
+  }
 
 };
 // Export the helpers function.
