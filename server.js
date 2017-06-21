@@ -84,7 +84,7 @@ app.delete("/api/saved/:id", function(req, res) {
     if(err){
       res.send("Delete didn't work: " + err);
     }
-    res.redirect("/");
+    res.send(response);
   });
 });
 

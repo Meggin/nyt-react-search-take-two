@@ -14,7 +14,7 @@ class Saved extends React.Component {
         				<div className="panel-body">
 					      {this.props.saved.map((article, i) => {
 					        return (
-					        	<div key={i} onClick={() => this.props.deleteArticle(article._id)} className="row">
+					        	<div key={i} onClick={() => this.props.deleteArticle(article._id, i)} className="row">
 					        		<div className="col-sm-4">
 					        			{article.title}
 					        		</div>

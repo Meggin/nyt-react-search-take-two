@@ -80,10 +80,12 @@ class Main extends React.Component {
     });
   }
 
-  deleteArticle(articleID) {
+  deleteArticle(articleID, index) {
     console.log("This is the id for the article we want to delete: " + articleID);
     helpers.deleteArticle(articleID).then(() => {
-      console.log("Article deleted?");
+      this.setState((prevState) => ({
+        saved: [...prevState.saved.slice(0,index), ...prevState.saved.slice(index+1)]
+      }));
     });
   }
 
