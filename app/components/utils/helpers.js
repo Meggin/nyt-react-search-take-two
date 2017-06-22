@@ -26,7 +26,7 @@ const helpers = {
   	return axios.get("/api/saved");
   },
 
-  saveArticle: (articleTitle, articleDate) => {
+  saveArticle: (articleTitle, articleDate, articleURL) => {
 
   	console.log("We have an article title to save in helper code: " + articleTitle);
   	console.log("We have an article date to save in helper code: " + articleDate);
@@ -34,7 +34,8 @@ const helpers = {
   	return axios.post("/api/saved",
   		{
   			title: articleTitle,
-  			date: articleDate
+  			date: articleDate,
+        url: articleURL
   		}
   	);
   },

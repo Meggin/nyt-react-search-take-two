@@ -11,7 +11,7 @@ const Article = require("./models/Article");
 
 // Create Instance of Express
 const app = express();
-// Sets an initial port. We'll use this later in our listener
+// Sets an initial port.
 const PORT = process.env.PORT || 8080;
 
 // Run Morgan for Logging
@@ -39,7 +39,7 @@ db.once("open", function() {
 
 // -------------------------------------------------
 
-// This is the route we will send GET requests for saved articles.
+// Route to get all saved articles.
 app.get("/api/saved", function(req, res) {
 
   // We will find all the records, sort it in descending order, then limit the records to 5
@@ -54,7 +54,7 @@ app.get("/api/saved", function(req, res) {
 });
 
 // Main "/" Route. Redirects user to rendered React application.
-app.get("/", function(req, res) {
+app.get("*", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
@@ -62,12 +62,13 @@ app.get("/", function(req, res) {
 app.post("/api/saved", function(req, res) {
   console.log("Article title: " + req.body.title);
   console.log("Article date: " + req.body.date);
+  console.log("Article url: ") + req.body.url;
 
   // Save article.
-  // Todo: need to add date and url eventually.
   Article.create({
     title: req.body.title,
-    date: req.body.date
+    date: req.body.date,
+    url: req.body.url
   }, function(err) {
     if (err) {
       console.log(err);
@@ -78,6 +79,7 @@ app.post("/api/saved", function(req, res) {
   });
 });
 
+// Route to delete saved article.
 app.delete("/api/saved/:id", function(req, res) {
 
   console.log("Article ID to delete: " + req.params.id);
@@ -90,7 +92,7 @@ app.delete("/api/saved/:id", function(req, res) {
   });
 });
 
-// Listener
+// Listener.
 app.listen(PORT, () => {
   console.log("App listening on PORT: " + PORT);
 });
