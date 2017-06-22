@@ -13,7 +13,7 @@ class Results extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit(headline, pubdate, url) {
+  handleSubmit(index, headline, pubdate, url) {
     event.preventDefault();
     console.log("This is headline of new article to save: " + headline);
     console.log("This is the published date of new article to save: " + pubdate);
@@ -25,7 +25,7 @@ class Results extends React.Component {
       article: newState
     });
     console.log("New value of article date? " + this.state.article.date);
-    this.props.setArticleToSave(this.state.article);
+    this.props.setArticleToSave(index, this.state.article);
   }
   render() {
     return (
@@ -36,7 +36,7 @@ class Results extends React.Component {
         <div className="panel-body">
           {this.props.results.map(function(obj, index){
             return (
-              <div key={index} className="row resultsRow" onClick={() => this.handleSubmit(obj.headline.main, obj.pub_date, obj.web_url)}>
+              <div key={index} className="row resultsRow" onClick={() => this.handleSubmit(index, obj.headline.main, obj.pub_date, obj.web_url)}>
                 <div className="col-sm-6 articleText">
                   {obj.headline.main}
                 </div>

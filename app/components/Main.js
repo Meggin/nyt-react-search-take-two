@@ -58,7 +58,7 @@ class Main extends React.Component {
     });
   }
 
-  setArticleToSave(article) {
+  setArticleToSave(index, article) {
 
     const newState = this.state.resultToSave;
     newState.title = article.title;
@@ -74,7 +74,8 @@ class Main extends React.Component {
       console.log("Save data title looks like this: " + data);
 
       this.setState(previousState => ({
-        saved: [...previousState.saved, this.state.resultToSave]
+        saved: [...previousState.saved, this.state.resultToSave],
+        results: [...previousState.results.slice(0, index), ...previousState.results.slice(index+1)]
       }));
 
     });
