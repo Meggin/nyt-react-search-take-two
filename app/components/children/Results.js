@@ -36,11 +36,15 @@ class Results extends React.Component {
         <div className="panel-body">
           {this.props.results.map(function(obj, index){
             return (
-              <div key={index} onClick={() => this.handleSubmit(obj.headline.main, obj.pub_date, obj.web_url)}>
-                <p>{obj.headline.main}</p>
-                <button className="btn btn-primary">
-                  Save Article
-                </button>
+              <div key={index} className="row resultsRow" onClick={() => this.handleSubmit(obj.headline.main, obj.pub_date, obj.web_url)}>
+                <div className="col-sm-6 articleText">
+                  {obj.headline.main}
+                </div>
+                <div className="col-sm-6">
+                  <button className="btn btn-primary pull-right saveButton">
+                    Save Article
+                  </button>
+                </div>
               </div>
             );
           }, this)}
