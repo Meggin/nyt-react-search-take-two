@@ -2,7 +2,7 @@
   "name": "nyt-react-search-take-two",
   "version": "1.0.0",
   "description": "Mongo express react node app that lets users search for nytimes articles and save them",
-  "main": "public/index.html",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -w"
