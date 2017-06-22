@@ -17,7 +17,7 @@ class Saved extends React.Component {
 					        	return (
 					        		<div key={i} onClick={() => this.props.deleteArticle(article._id, i)} className="row savedRow">
 					        			<div className="col-sm-5 articleText">
-					        				{article.title}
+					        				<a href={article.url}>{article.title}</a>
 					        			</div>
 					        			<div className="col-sm-5 dateText">
 					        				Date Saved: {article.date}

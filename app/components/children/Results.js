@@ -38,7 +38,7 @@ class Results extends React.Component {
             return (
               <div key={index} className="row resultsRow" onClick={() => this.handleSubmit(index, obj.headline.main, obj.pub_date, obj.web_url)}>
                 <div className="col-sm-6 articleText">
-                  {obj.headline.main}
+                  <a href={obj.web_url}>{obj.headline.main}</a>
                 </div>
                 <div className="col-sm-6">
                   <button className="btn btn-primary pull-right saveButton">
