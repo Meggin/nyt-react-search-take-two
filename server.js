@@ -1,16 +1,18 @@
+'use strict'
+
 // Include Server Dependencies
-var express = require("express");
-var bodyParser = require("body-parser");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+const express = require("express");
+const bodyParser = require("body-parser");
+const logger = require("morgan");
+const mongoose = require("mongoose");
 
 // Require Article Schema
-var Article = require("./models/Article");
+const Article = require("./models/Article");
 
 // Create Instance of Express
-var app = express();
+const app = express();
 // Sets an initial port. We'll use this later in our listener
-var PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
 // Run Morgan for Logging
 app.use(logger("dev"));
@@ -89,6 +91,6 @@ app.delete("/api/saved/:id", function(req, res) {
 });
 
 // Listener
-app.listen(PORT, function() {
+app.listen(PORT, () => {
   console.log("App listening on PORT: " + PORT);
 });
